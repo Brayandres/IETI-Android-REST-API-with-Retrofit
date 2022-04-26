@@ -25,6 +25,6 @@ public class AuthInterceptor implements Interceptor {
         if (!token.isEmpty()) {
             request.addHeader("Authorization", "Bearer "+token);
         }
-        return null;
+        return chain.proceed(request.build());
     }
 }
