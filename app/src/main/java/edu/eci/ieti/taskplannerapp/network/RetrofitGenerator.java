@@ -19,7 +19,14 @@ public class RetrofitGenerator {
 
     private static Retrofit retrofitInstance;
 
-    public static Retrofit createRetrofitInstance(Storage storage) {
+    public Retrofit getRetrofitInstance(Storage storage) {
+        if (retrofitInstance == null) {
+            retrofitInstance = createRetrofitInstance(storage);
+        }
+        return retrofitInstance;
+    }
+
+    static private Retrofit createRetrofitInstance(Storage storage) {
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
         Retrofit.Builder builder = new Retrofit
                 .Builder()
